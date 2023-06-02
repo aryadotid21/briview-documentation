@@ -126,3 +126,12 @@ curl --location --request POST 'http://xxx:3232/api/status-mesin' \
   "data": null
 }
 ```
+## 📖 Response Description
+
+| Status   |  Description  |
+| ------------- |:--------------|
+|`200`| ✅ OK: Everything is working fine. The requested resource has been successfully fetched and transmitted in the message body.|
+|`400`| ❌ BAD REQUEST: The provided request was invalid or cannot be served. Refer to the error payload for more details on the exact error encountered.|
+|`401`| 🔒 UNAUTHORIZED: User authentication is required to access the requested resource. Please ensure proper authentication credentials are provided.|
+|`404`| 🔍 NOT FOUND: The specified URI does not correspond to any existing resource. Double-check the URI for accuracy.|
+|`500`| ❗ INTERNAL SERVER ERROR: An unexpected error occurred in the API's global catch block. The stack trace should be logged internally and not returned as a response. Our team is actively working to resolve the issue. |
