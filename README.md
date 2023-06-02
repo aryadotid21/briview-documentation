@@ -1,20 +1,17 @@
-# 📚 BRIview 2023 Documentation
-
-Welcome to the BRIview 2023 Documentation! 🎉 Here, you'll find detailed information about the REST API Data Delivery. This document aims to explain the various aspects of data delivery through our API. From endpoints to data formats, we've got you covered. Let's dive in and unlock the power of BRIview together! 💪
-
 ## 📖 API Reference
 
 ### Send Automatic Ticket (Agent Base) ✉️
 
 ```http
-  POST http://{{host}}:3232/api/tiket
+  POST {{host}}/tiket
 ```
 
 #### 📝 Preperation 
-| Header   | Description                                      |
-| :------- | :----------------------------------------------- |
-| `Header` | **Required**. Key: Authorization, Value: JWT Key |
-| `body`   | Raw JSON                                         |
+| Type     | Description                                                     |
+| :------- | :-------------------------------------------------------------- |
+| `Header` | **Required**. Key: Authorization, Value: JWT Key                |
+| `Header` | **Required**. Key: api-key, Value: API Key from the application |
+| `body`   | Raw JSON payload                                                |
 
 #### 📋 Parameter
 
@@ -31,8 +28,9 @@ Welcome to the BRIview 2023 Documentation! 🎉 Here, you'll find detailed infor
 #### ▶️ Usage/Examples
 
 ```
-curl --location --request POST 'http://{{host}}:3232/api/tiket' \
---header 'Authorization: {token}' \
+curl --location --request POST '{{host}}/tiket' \
+--header 'Authorization: {JWT Key}' \
+--header 'api-key: {API Key}' \
 --header 'Content-Type: application/json' \
 --data-raw '[
     {
@@ -70,14 +68,15 @@ curl --location --request POST 'http://{{host}}:3232/api/tiket' \
 ### Send Machine Status (Agent Base) 📊
 
 ```http
-  POST http://{{host}}:3232/api/status-mesin
+  POST {{host}}/statusmesin
 ```
 
-#### 📝 Preperation
-| Header   | Description                                      |
-| :------- | :----------------------------------------------- |
-| `Header` | **Required**. Key: Authorization, Value: JWT Key |
-| `body`   | Raw JSON                                         |
+#### 📝 Preperation 
+| Type     | Description                                                     |
+| :------- | :-------------------------------------------------------------- |
+| `Header` | **Required**. Key: Authorization, Value: JWT Key                |
+| `Header` | **Required**. Key: api-key, Value: API Key from the application |
+| `body`   | Raw JSON payload                                                |
 
 #### 📋 Parameter
 
@@ -96,8 +95,9 @@ curl --location --request POST 'http://{{host}}:3232/api/tiket' \
 #### ▶️ Usage/Examples
 
 ```
-curl --location --request POST 'http://xxx:3232/api/status-mesin' \
---header 'Authorization: {token}' \
+curl --location --request POST '{{host}}/statusmesin' \
+--header 'Authorization: {JWT Key}' \
+--header 'api-key: {API Key}' \
 --header 'Content-Type: application/json' \
 --data-raw '[
     {
@@ -126,12 +126,13 @@ curl --location --request POST 'http://xxx:3232/api/status-mesin' \
   "data": null
 }
 ```
+
 ## 📖 Response Description
 
 | Status   |  Description  |
 | ------------- |:--------------|
-|`200`| ✅ OK: Everything is working fine. The requested resource has been successfully fetched and transmitted in the message body.|
-|`400`| ❌ BAD REQUEST: The provided request was invalid or cannot be served. Refer to the error payload for more details on the exact error encountered.|
-|`401`| 🔒 UNAUTHORIZED: User authentication is required to access the requested resource. Please ensure proper authentication credentials are provided.|
-|`404`| 🔍 NOT FOUND: The specified URI does not correspond to any existing resource. Double-check the URI for accuracy.|
-|`500`| ❗ INTERNAL SERVER ERROR: An unexpected error occurred in the API's global catch block. The stack trace should be logged internally and not returned as a response. Our team is actively working to resolve the issue. |
+|`200`| ✅ **OK**: Everything is working fine. The requested resource has been successfully fetched and transmitted in the message body.|
+|`400`| ❌ **BAD REQUEST**: The provided request was invalid or cannot be served. Refer to the error payload for more details on the exact error encountered.|
+|`401`| 🔒 **UNAUTHORIZED**: User authentication is required to access the requested resource. Please ensure proper authentication credentials are provided.|
+|`404`| 🔍 **NOT FOUND**: The specified URI does not correspond to any existing resource. Double-check the URI for accuracy.|
+|`500`| ❗ **INTERNAL SERVER ERROR**: An unexpected error occurred in the API's global catch block. The stack trace should be logged internally and not returned as a response. Our team is actively working to resolve the issue. |
